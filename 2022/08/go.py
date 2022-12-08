@@ -1,4 +1,3 @@
-
 def calc_scientic(forest, ri, ci):
   size = len(forest[0])
   tree = forest[ri][ci]
@@ -54,14 +53,14 @@ def calc_scientic(forest, ri, ci):
 with open('input.txt') as f:
   lines = f.read().splitlines()
   size = len(lines)
-  forest = [list(line) for line in lines]
+  forest = [[int(t) for t in list(line)] for line in lines]
   tmap = [[0] * size for i in range(size)]
 
   for r in range(size):
     # l-r
     h = -1
     for c in range(size):
-      th = int(forest[r][c])
+      th = forest[r][c]
       if th > h:
         h = th
         tmap[r][c] = 1
@@ -69,7 +68,7 @@ with open('input.txt') as f:
     # r-l
     h = -1
     for c in range(size):
-      th = int(forest[r][-c-1])
+      th = forest[r][-c-1]
       if th > h:
         h = th
         tmap[r][-c-1] = 1
@@ -78,7 +77,7 @@ with open('input.txt') as f:
     # t-b
     h = -1
     for r in range(size):
-      th = int(forest[r][c])
+      th = forest[r][c]
       if th > h:
         h = th
         tmap[r][c] = 1
@@ -86,7 +85,7 @@ with open('input.txt') as f:
     # b-t
     h = -1
     for r in range(size):
-      th = int(forest[-r-1][c])
+      th = forest[-r-1][c]
       if th > h:
         h = th
         tmap[-r-1][c] = 1
