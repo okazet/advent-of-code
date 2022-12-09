@@ -19,7 +19,7 @@ def tail_round(v):
   if v == -0.5: return -1
   return int(v)
 
-def updateTail(head, tail):
+def update(head, tail):
   sub = np.subtract(head, tail)
   abssub = np.absolute(sub)
   isTouching = abssub[0] < 2 and abssub[1] < 2
@@ -29,26 +29,21 @@ def updateTail(head, tail):
   tail_move = list(map(tail_round, list(sub/2)))
   return np.add(tail, tail_move)
 
-with open('input.txt') as f:
-  lines = f.read().splitlines()
-  head = np.array([0,0])
-  tail = np.array([0,0])
-  path = get_path(lines)
-  result = set()
-  result2 = set()
-
-  for step in path:
-    head = np.add(head, step)
-    tail = updateTail(head, tail)
-    result.add(np.array2string(tail))
-  
-  rope = [np.array([0,0]) for i in range(10)]
-
+def get_tail_positions(rope, path):
+  rope_size = len(rope)
+  positions = set()
   for step in path:
     rope[0] = np.add(rope[0], step)
-    for i in range(1,10):
-      rope[i] = updateTail(rope[i-1], rope[i])
-    result2.add(np.array2string(rope[-1]))
+    for i in range(1,rope_size):
+      rope[i] = update(rope[i-1], rope[i])
+    positions.add(np.array2string(rope[-1]))  
+  return positions
 
-  print('part 1:', len(result))
-  print('part 2:', len(result2))
+with open('input.txt') as f:
+  lines = f.read().splitlines()
+  path = get_path(lines)
+  rope2 = [np.array([0,0]) for i in range(2)]
+  rope10 = [np.array([0,0]) for i in range(10)]
+  
+  print('part 1', len(get_tail_positions(rope2,path)))
+  print('part 2', len(get_tail_positions(rope10, path)))
