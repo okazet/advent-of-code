@@ -6,7 +6,7 @@ def get_coords(move):
   if move == 'L': return [-1,0]
   if move == 'D': return [0,-1]
 
-def get_path(input):
+def get_path(lines):
   path = []
   for line in lines:
     move, times = str.split(line)
@@ -40,8 +40,7 @@ def get_tail_positions(rope, path):
   return positions
 
 with open('input.txt') as f:
-  lines = f.read().splitlines()
-  path = get_path(lines)
+  path = get_path(f.read().splitlines())
   rope2 = [np.array([0,0]) for i in range(2)]
   rope10 = [np.array([0,0]) for i in range(10)]
   
