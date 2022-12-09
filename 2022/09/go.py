@@ -22,8 +22,8 @@ def tail_round(v):
 def update(head, tail):
   sub = np.subtract(head, tail)
   abssub = np.absolute(sub)
+  
   isTouching = abssub[0] < 2 and abssub[1] < 2
-
   if isTouching: return tail
 
   tail_move = list(map(tail_round, list(sub/2)))
