@@ -1,12 +1,7 @@
 import numpy as np
 
-'o' = 'o'
-'#' = '#'
-'.' = '.'
-
 def draw(cave, cropleft = 0):
-  for l in np.fliplr(np.rot90(cave, k=3)):
-    print(''.join(l[cropleft:]))
+  for l in np.fliplr(np.rot90(cave, k=3)): print(''.join(l[cropleft:]))
 
 def fall(cave, sand):
   for d in [[0, 1], [-1, 1], [1, 1]]:
