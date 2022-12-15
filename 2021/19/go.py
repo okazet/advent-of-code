@@ -42,4 +42,4 @@ with open('input.txt') as f:
   for i in range(50):
     result = process(pad(result, 2, '.' if i % 2 == 0 else '#'), algo)
 
-  print('part 2:', sum(map(lambda x: 1 if x == '#' else 0, np.ravel(result))))  
+  print('part 2:', sum(map(lambda x: 1 if x == '#' else 0, np.ravel(result))))
